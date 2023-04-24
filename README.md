@@ -1,25 +1,27 @@
 <h2 align="center">Project Management Frontend With ReactJS</h2>
 
 
-## 💻 Descrição
+## 💻 Description
 
-Desenvolver uma aplicação de controle de projetos
+Developing a project management application
 
 ## 🛠️ Features
 
-- Adicionar um novo projeto
-- Marcar uma projeto como concluído
-- Remover um projeto da listagem
-- Mostrar o progresso de conclusão dos projetos
+- Create a new Project
+- Mark project as done
+- Remove existing project
+- Show the progress of project completion
 
 ### 📝 Clone
 
-Para clonar o repositório utilize `git clone https://github.com/fermlisboa/pm-frontend.git`.
+To clone this repo use `git clone https://github.com/fermlisboa/pm-frontend.git`.
 
 ### Installation
 
-Execute `yarn` ou `npm install` para instalar as dependencias
+Execute `yarn` or `npm install` to install dependencies
+
+Config your `.env` based in `.env.example`
 
 ##### Get Start
 
-Com todas as dependencias instaladas, execute `yarn dev`para iniciar a aplicação em modo dev.
+Use`yarn dev` to start the application in development mode.
