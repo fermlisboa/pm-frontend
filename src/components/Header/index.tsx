@@ -12,9 +12,10 @@ interface IProject {
 }
 interface Props {
   onAddProject: (project: IProject) => void;
+  onLogout: () => void;
 }
 
-export function Header({onAddProject}: Props) {
+export function Header({onAddProject, onLogout}: Props) {
   const [title, setTitle] = useState('');
   const [cost, setCost] = useState('');
   const [zip_code, setZipCode] = useState('');
@@ -41,10 +42,13 @@ export function Header({onAddProject}: Props) {
     setTitle(event.target.value);
   }
   function onChangeCost(event: ChangeEvent<HTMLInputElement>) {
-    setCost(event.target.value);
+    // validar pra não aceitar caractere
+    setCost(event.target.value.replace(/[^\d]/g, ""));
   }
   function onChangeZipCode(event: ChangeEvent<HTMLInputElement>) {
-    setZipCode(event.target.value);
+    let value = event.target.value.replace(/\D/g,'')
+    value = event.target.value.replace(/(\d{5})(\d)/,'$1-$2')
+    setZipCode(value);
   }
   function onChangeDeadline(event: ChangeEvent<HTMLInputElement>) {
     setDeadline(event.target.value);
@@ -52,15 +56,15 @@ export function Header({onAddProject}: Props) {
 
   return (
     <div>
-      <div className={styles.main}>
-        <Logout />
+      <div className={styles.logout}>
+        <Logout onLogout={onLogout} />
       </div>
       <header className={styles.header} >
         <h1>Projetos</h1>
         <form onSubmit={handleSubmit} className={styles.newProjectForm}>
           <input type="text" placeholder='Title' onChange={onChangeTitle} value={title} required />
           <input type="text" placeholder='Cost' value={cost} onChange={onChangeCost} required />
-          <input type="text" placeholder='Zip Code' value={zip_code} onChange={onChangeZipCode} required />
+          <input type="text" placeholder='Zip Code' maxLength={9} value={zip_code} onChange={onChangeZipCode} required />
           <input type="date" name="deadline" placeholder="Deadline" value={deadline} min={now.toLocaleString()} max="2030-12-31" onChange={onChangeDeadline} required />
           <button type='submit'>
             Criar

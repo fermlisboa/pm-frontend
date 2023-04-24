@@ -49,9 +49,11 @@
   font-size: 0.875rem;
 }
 
-.main {
+.logout {
   background: var(--gray-700);
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: end;
+  height: 3.125rem;
 }

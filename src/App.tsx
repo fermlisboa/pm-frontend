@@ -24,27 +24,27 @@ function App() {
     if (localStorage.getItem(LOCAL_STORAGE_KEY)) {
       setLoggedIn(true);
     }
+    loadSavedProjects()
   }, []);
 
-  async function loadSavedProjects() {
-  const savedProjects = (await axiosApi.get('project')).data;
-   if (savedProjects) {
-     setProjects(savedProjects);
-   }
+  async function loadSavedProjects(token?: string){
+    if (token) {
+      const savedProjects = (await axiosApi.get('project',{ headers: {
+        Authorization: `Bearer ${token}`
+      } })).data;
+      if (savedProjects) {
+        setProjects(savedProjects);
+      }
+    } else {
+      const savedProjects = (await axiosApi.get('project')).data;
+      if (savedProjects) {
+        setProjects(savedProjects);
+      }
+    }
   }
 
-  useEffect(() => {
-    loadSavedProjects();
-  }, [])
-
-  async function setProjectsAndSave(newProjects: IProject[]) {
-    setProjects(newProjects);
-    await axiosApi.post('project', newProjects);
-    loadSavedProjects();
-  }
-
-  function addProject(project:IProject) {
-    setProjectsAndSave([
+  async function addProject(project:IProject) {
+    setProjects([
       ...projects,
       {
         title: project.title,
@@ -53,6 +53,8 @@ function App() {
         deadline: project.deadline,
       }
     ]);
+    await axiosApi.post('project', project);
+    loadSavedProjects();
   }
   
   async function removeProject(id: string) {
@@ -71,9 +73,15 @@ function App() {
     const userLoggedIn = await axiosAuthApi.post('auth/login', { username, password });
     localStorage.setItem(LOCAL_STORAGE_KEY, userLoggedIn.data.access_token);
     setLoggedIn(true);
+    await loadSavedProjects(userLoggedIn.data.access_token);
   }
 
-  if(loggedIn == false) {
+  function signOut() {
+    localStorage.removeItem(LOCAL_STORAGE_KEY);
+    setLoggedIn(false);
+  }
+
+  if(loggedIn === false) {
     return (
       <>
         <Login onLogin={signIn}/>
@@ -82,7 +90,7 @@ function App() {
   }
   return (
     <>
-    <Header onAddProject={addProject} />
+    <Header onAddProject={addProject} onLogout={signOut} />
     <Projects
       projects={projects}
       handleDeleteProject={removeProject}
