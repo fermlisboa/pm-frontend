@@ -1,3 +1,4 @@
+import logo from '../../assets/project-logo.svg';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
 
 import styles from './header.module.css';
@@ -59,15 +60,16 @@ export function Header({onAddProject, onLogout}: Props) {
       <div className={styles.logout}>
         <Logout onLogout={onLogout} />
       </div>
-      <header className={styles.header} >
-        <h1>Projetos</h1>
+      <header className={styles.header}  >
+        {/* <h1>Projects</h1> */}
+        <img src={logo} className={styles.logo} alt="" />
         <form onSubmit={handleSubmit} className={styles.newProjectForm}>
           <input type="text" placeholder='Title' onChange={onChangeTitle} value={title} required />
           <input type="text" placeholder='Cost' value={cost} onChange={onChangeCost} required />
           <input type="text" placeholder='Zip Code' maxLength={9} value={zip_code} onChange={onChangeZipCode} required />
           <input type="date" name="deadline" placeholder="Deadline" value={deadline} min={now.toLocaleString()} max="2030-12-31" onChange={onChangeDeadline} required />
           <button type='submit'>
-            Criar
+            Create
             <AiOutlinePlusCircle size={20} />
           </button>
         </form>

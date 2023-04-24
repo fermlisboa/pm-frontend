@@ -14,11 +14,10 @@ export function Login({onLogin}: Props) {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [alertPassword, setAlertPasword] = useState(false);
+  const [alertPassword, setAlertPassword] = useState(false);
   const [alertConfirmPassword, setAlertConfirmPassword] = useState(false);
   const [alertUsernameExists, setAlertUsernameExists] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [successRegister, setSuccessRegister] = useState(false);
 
 
   function handleSubmitLogin(event: FormEvent) {
@@ -37,7 +36,6 @@ export function Login({onLogin}: Props) {
       } else {
         setText('Login');
         setRegister(false);
-        setSuccessRegister(true);
         setAlertConfirmPassword(false);
         setName('');
         setUsername('');
@@ -65,6 +63,14 @@ export function Login({onLogin}: Props) {
     setPassword('');
     setConfirmPassword('');
   }
+
+  function verifyPassword(password: string) {
+    if (password.length < 8) {
+      setAlertPassword(true);
+    } else {
+      setAlertPassword(false);
+    }
+  }
   
 
   return (
@@ -83,7 +89,7 @@ export function Login({onLogin}: Props) {
               Login
             </button>
             <button onClick={onRegister}>
-              Cadastrar
+              Register
             </button> 
           </div>
         </form>
@@ -103,32 +109,34 @@ export function Login({onLogin}: Props) {
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
-              setAlertPasword(false);
+              verifyPassword(e.target.value);
+              setAlertConfirmPassword(false);
             }}
             required
           />
           {alertPassword && (
-            <span className={styles.span}>Senha precisa ter 8 caracteres</span>
+            <span className={styles.span}>Your password must be at least 8 characters long</span>
           )}
           <input type="password" name='passwordConfirm' placeholder='Confirm Password'
             value={confirmPassword}
             onChange={(e) => {
               setConfirmPassword(e.target.value);
+              setAlertConfirmPassword(false);
             }}
             required 
           />
           {alertConfirmPassword && (
-            <span className={styles.span}>As senhas precisam ser iguais</span>
+            <span className={styles.span}>Passwords must match</span>
           )}
           {alertUsernameExists && (
-            <span className={styles.span}>Username já existente</span>
+            <span className={styles.span}>Username already exists</span>
           )}
           <div className={styles.divButton}>
             <button onClick={backToLogin}>
-              Voltar ao Login
+              Back to Login
             </button> 
             <button type='submit'>
-              Cadastrar
+              Register
             </button>
           </div>
         </form>

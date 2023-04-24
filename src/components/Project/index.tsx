@@ -1,7 +1,6 @@
 import styles from './project.module.css';
 import { TbTrash } from 'react-icons/tb';
 import { BsFillCheckCircleFill } from 'react-icons/bs';
-import { useEffect } from 'react';
 
 export interface IProject {
   id?: string;
@@ -36,7 +35,7 @@ export function Project({project, handleDeleteProject, handleCompleteProject}: P
       </div>
       <div className={styles.projectDiv}>
         <p className={ project.done ? styles.completedText : '' } >
-          {project.cost}
+          R$ {project.cost}
         </p>
       </div>
       <div className={styles.projectDiv}>

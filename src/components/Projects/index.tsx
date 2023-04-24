@@ -17,33 +17,35 @@ export function Projects({projects, handleDeleteProject, handleCompleteProject}:
     <section className={styles.projects} >
       <header className={styles.header} >
         <div>
-          <p>Projetos criados</p>
+          <p>Created Projects</p>
           <span>{projectQuantity}</span>
         </div>
         <div>
-          <p className={styles.purpleText} >Concluidos</p>
+          <p className={styles.purpleText} >Completed</p>
           <span>{completedProjects} de {projectQuantity}</span>
         </div>
       </header>
-      <div className={styles.listTitle} >
-        <div className={styles.emptyP}>
-          <p></p>
-        </div>
-        <div className={styles.divP}>
-          <p>Title</p>
-        </div>
-        <div className={styles.divP}>
-          <p>Cost</p>
-        </div>
-        <div className={styles.divP}>
-          <p>Zip Code</p>
-        </div>
-        <div className={styles.divP}>
-          <p>Deadline</p>
-        </div>
-        <p className={styles.emptyP} />
-      </div>
 
+      {projects.length > 0 && (
+        <div className={styles.listTitle} >
+          <div className={styles.emptyP}>
+            <p></p>
+          </div>
+          <div className={styles.divP}>
+            <p>Title</p>
+          </div>
+          <div className={styles.divP}>
+            <p>Cost</p>
+          </div>
+          <div className={styles.divP}>
+            <p>Zip Code</p>
+          </div>
+          <div className={styles.divP}>
+            <p>Deadline</p>
+          </div>
+          <p className={styles.emptyP} />
+        </div>
+      )}
       <div className={styles.list} >
         {projects.map((project) => (
           <Project key={project.id} project={project} handleDeleteProject={handleDeleteProject} handleCompleteProject={handleCompleteProject}/>
@@ -53,8 +55,8 @@ export function Projects({projects, handleDeleteProject, handleCompleteProject}:
           <section className={styles.emptyProjects}>
             <TbClipboardText size={50} />
             <div>
-              <p>Nenhum Projeto criado</p>
-              <span>Crie seus Projetos e organize seus prazos</span>
+              <p>You don't have any projects</p>
+              <span>Create your projects, make your schedule </span>
             </div>
           </section>
         )}

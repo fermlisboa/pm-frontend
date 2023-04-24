@@ -44,15 +44,6 @@ function App() {
   }
 
   async function addProject(project:IProject) {
-    setProjects([
-      ...projects,
-      {
-        title: project.title,
-        cost: project.cost,
-        zip_code: project.zip_code,
-        deadline: project.deadline,
-      }
-    ]);
     await axiosApi.post('project', project);
     loadSavedProjects();
   }
