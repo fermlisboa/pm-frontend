@@ -61,10 +61,15 @@ function App() {
   }
 
   async function signIn(username: string, password: string) {
-    const userLoggedIn = await axiosAuthApi.post('auth/login', { username, password });
-    localStorage.setItem(LOCAL_STORAGE_KEY, userLoggedIn.data.access_token);
-    setLoggedIn(true);
-    await loadSavedProjects(userLoggedIn.data.access_token);
+    const userLoggedIn = await axiosAuthApi.post('auth/login', { username, password }).catch(() => {
+      return
+    });
+    if (userLoggedIn) {
+      localStorage.setItem(LOCAL_STORAGE_KEY, userLoggedIn.data.access_token);
+      localStorage.setItem('name', userLoggedIn.data.name);
+      setLoggedIn(true);
+      await loadSavedProjects(userLoggedIn.data.access_token);
+    }
   }
 
   function signOut() {

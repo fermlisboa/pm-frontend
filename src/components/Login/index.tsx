@@ -15,14 +15,17 @@ export function Login({onLogin}: Props) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [alertPassword, setAlertPassword] = useState(false);
+  const [alertWrongPassword, setAlertWrongPassword] = useState(false);
   const [alertConfirmPassword, setAlertConfirmPassword] = useState(false);
   const [alertUsernameExists, setAlertUsernameExists] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
 
-  function handleSubmitLogin(event: FormEvent) {
+  async function handleSubmitLogin(event: FormEvent) {
     event.preventDefault();
-    onLogin(username, password);
+    const login = await onLogin(username, password);
+    if(login === undefined) {
+      setAlertWrongPassword(true);
+    }
   }
 
   async function handleSubmitRegister(event: FormEvent) {
@@ -78,12 +81,20 @@ export function Login({onLogin}: Props) {
       <h1>{text}</h1>
       {register === false && (
         <form onSubmit={handleSubmitLogin} className={styles.loginForm}>
-          <input type="text" name='username' placeholder='Username'  onChange={(e) => {
+          <input type="text" name='username' placeholder='Username' 
+            onChange={(e) => {
             setUsername(e.target.value);
-          }} required />
-          <input type="password" name='password' placeholder='Password' onChange={(e) => {
+            }} required
+          />
+          <input type="password" name='password' placeholder='Password'
+            onChange={(e) => {
               setPassword(e.target.value);
-            }} required />
+              setAlertWrongPassword(false);
+            }} required 
+          />
+          {alertWrongPassword && (
+            <span className={styles.span}>Wrong Password</span>
+          )}
           <div className={styles.divButton}>
             <button type='submit'>
               Login
