@@ -1,9 +1,10 @@
 import styles from './project.module.css';
 import { TbTrash } from 'react-icons/tb';
 import { BsFillCheckCircleFill } from 'react-icons/bs';
+import { useEffect } from 'react';
 
 export interface IProject {
-  id: string;
+  id?: string;
   title: string;
   cost: string;
   zip_code: string;
@@ -22,9 +23,11 @@ export function Project({project, handleDeleteProject, handleCompleteProject}: P
 
   return (
     <div className={styles.project} >
-      <button className={styles.checkBox} onClick={() => handleCompleteProject(project.id)} >
-        {project.done ? <BsFillCheckCircleFill />  : <div/>}
-      </button>
+      <div className={styles.projectDivCheck}>
+        <button className={styles.checkBox} onClick={() => handleCompleteProject(project.id ? project.id : '')} >
+          {project.done ? <BsFillCheckCircleFill />  : <div/>}
+        </button>
+      </div>
 
       <div className={styles.projectDiv}>
         <p className={ project.done ? styles.completedText : '' } >
@@ -43,12 +46,15 @@ export function Project({project, handleDeleteProject, handleCompleteProject}: P
       </div>
       <div className={styles.projectDiv}>
         <p className={ project.done ? styles.completedText : '' } >
-          {project.deadline}
+          {project.deadline.substring(0,10)}
         </p>
       </div>
-      <button className={styles.deleteButton} onClick={() => handleDeleteProject(project.id)}>
-        <TbTrash size={20} />
-      </button>
+
+      <div className={styles.projectDivButton}>
+        <button className={styles.deleteButton} onClick={() => handleDeleteProject(project.id ? project.id : '')}>
+          <TbTrash size={20} />
+        </button>
+      </div>
     </div>
   )
 }

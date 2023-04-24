@@ -1,11 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 import styles from './login.module.css';
-import { AiOutlinePlusCircle } from 'react-icons/ai';
 import { axiosApi } from '../../utils/utils';
-
-interface AuhtToken {
-  access_token: string;
-}
 
 interface Props {
   onLogin: (username: string, password: string) => void;
@@ -19,10 +14,10 @@ export function Login({onLogin}: Props) {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(true);
   const [alertPassword, setAlertPasword] = useState(false);
   const [alertConfirmPassword, setAlertConfirmPassword] = useState(false);
   const [alertUsernameExists, setAlertUsernameExists] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [successRegister, setSuccessRegister] = useState(false);
 
 

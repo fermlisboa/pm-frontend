@@ -76,7 +76,30 @@
   justify-content: space-between;
 }
 
-
 .emptyP {
+  font-size: 0.875rem;
+  align-itens: start;
+  justify-content: flex-start;
+  display: flex;
+  flex: 0.25;
+}
+
+.emptyP p {
   width: 1.125rem;
+}
+
+.divP {
+  font-size: 0.875rem;
+  line-height: 1.18rem;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.divP p {
+  font-size: 0.875rem;
+  line-height: 1.18rem;
+  margin-right: auto;
 }

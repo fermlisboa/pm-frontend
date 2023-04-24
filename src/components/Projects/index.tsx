@@ -26,12 +26,22 @@ export function Projects({projects, handleDeleteProject, handleCompleteProject}:
         </div>
       </header>
       <div className={styles.listTitle} >
-        <p className={styles.emptyP}> </p>
-        <p>Title</p>
-        <p>Cost</p>
-        <p>Zip Code</p>
-        <p>Deadline</p>
-        <p className={styles.emptyP}> </p>
+        <div className={styles.emptyP}>
+          <p></p>
+        </div>
+        <div className={styles.divP}>
+          <p>Title</p>
+        </div>
+        <div className={styles.divP}>
+          <p>Cost</p>
+        </div>
+        <div className={styles.divP}>
+          <p>Zip Code</p>
+        </div>
+        <div className={styles.divP}>
+          <p>Deadline</p>
+        </div>
+        <p className={styles.emptyP} />
       </div>
 
       <div className={styles.list} >

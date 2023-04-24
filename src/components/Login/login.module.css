@@ -8,6 +8,7 @@
 }
 
 .loginForm {
+  display: flex;
   position: absolute;
   flex-direction: column;
   align-items: center;
@@ -16,7 +17,6 @@
   bottom: calc(-15rem / 2);
   width: 100%;
   max-width: 46rem;
-  display: flex;
   gap: 0.5rem;
   padding: 0 1rem;
 }
@@ -37,6 +37,7 @@
 }
 
 .divButton {
+  display: flex;
   flex: 1;
   flex-direction: row;
   height: 100%;
@@ -44,7 +45,7 @@
   align-items: space-between;
   justify-content: space-between;
   font-weight: 700;
-  gap: 15rem;
+  gap: 0.875rem;
   font-size: 0.875rem;
   margin-top: 0.875rem;
 }

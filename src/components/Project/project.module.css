@@ -5,6 +5,7 @@
   padding: 1rem;
   border-radius: 0.5rem;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
@@ -42,7 +43,7 @@ p.completedText {
 }
 
 .deleteButton:hover {
-  color: var(--blue);
+  color: var(--danger);
 }
 
 .projectDiv {
@@ -50,8 +51,9 @@ p.completedText {
   line-height: 1.18rem;
   display: flex;
   flex-direction: row;
+  flex: 1;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .projectDiv p {
@@ -59,4 +61,16 @@ p.completedText {
   line-height: 1.18rem;
   color: var(--gray-100);
   margin-right: auto;
+}
+
+.projectDivButton {
+  align-itens: end;
+  justify-content: flex-end;
+  display: flex;
+}
+
+.projectDivCheck {
+  align-itens: start;
+  justify-content: flex-start;
+  display: flex;
 }
