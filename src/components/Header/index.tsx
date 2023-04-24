@@ -61,7 +61,6 @@ export function Header({onAddProject, onLogout}: Props) {
         <Logout onLogout={onLogout} />
       </div>
       <header className={styles.header}  >
-        {/* <h1>Projects</h1> */}
         <img src={logo} className={styles.logo} alt="" />
         <form onSubmit={handleSubmit} className={styles.newProjectForm}>
           <input type="text" placeholder='Title' onChange={onChangeTitle} value={title} required />

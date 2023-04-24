@@ -50,11 +50,11 @@
 }
 
 .logout {
-  background: var(--gray-700);
+  /* background: var(--gray-700); */
+  background: var(--gray-100);
   display: flex;
   flex: 1;
   flex-direction: column;
-  align-items: end;
   height: 3.125rem;
 }
 
