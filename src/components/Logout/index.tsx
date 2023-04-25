@@ -1,4 +1,4 @@
-import logo from '../../assets/project-logo.svg';
+import profile from '../../assets/profile.svg';
 import styles from "./logout.module.css";
 
 interface Props {
@@ -16,6 +16,7 @@ function formatName(name: string): string {
 export default function Logout({onLogout}: Props) {
   return (
     <div className={styles.logout}>
+      <img src={profile} className={styles.profile} alt="logo" />
       <div className={styles.project} >
         {name}
       </div>
