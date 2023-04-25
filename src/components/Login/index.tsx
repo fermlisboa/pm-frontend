@@ -54,7 +54,7 @@ export function Login({onLogin}: Props) {
   }
   
   function onRegister() {
-    setText('Cadastre-se');
+    setText('Register');
     setRegister(true);
   }
 

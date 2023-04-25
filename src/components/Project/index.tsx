@@ -1,6 +1,7 @@
 import styles from './project.module.css';
-import { TbTrash } from 'react-icons/tb';
+import { TbTrash, TbInfoCircleFilled } from 'react-icons/tb';
 import { BsFillCheckCircleFill } from 'react-icons/bs';
+import { IDetailedProject } from '../../App';
 
 export interface IProject {
   id?: string;
@@ -16,9 +17,10 @@ interface Props {
   project: IProject;
   handleDeleteProject: (id: string) => void;
   handleCompleteProject: (id: string) => void;
+  handleDetailedProject: (id: string) => void;
 }
 
-export function Project({project, handleDeleteProject, handleCompleteProject}: Props) {
+export function Project({project, handleDeleteProject, handleCompleteProject, handleDetailedProject}: Props) {
 
   return (
     <div className={styles.project} >
@@ -50,8 +52,20 @@ export function Project({project, handleDeleteProject, handleCompleteProject}: P
       </div>
 
       <div className={styles.projectDivButton}>
+        <button className={styles.deleteButton} onClick={() => handleDetailedProject(project.id ? project.id : '')}>
+          <TbInfoCircleFilled size={15} />
+        </button>
+      </div>
+
+      <div className={styles.projectDivButton}>
+        <button className={styles.deleteButton} onClick={() => handleDetailedProject(project.id ? project.id : '')}>
+          <TbInfoCircleFilled size={15} />
+        </button>
+      </div>
+
+      <div className={styles.projectDivButton}>
         <button className={styles.deleteButton} onClick={() => handleDeleteProject(project.id ? project.id : '')}>
-          <TbTrash size={20} />
+          <TbTrash size={15} />
         </button>
       </div>
     </div>

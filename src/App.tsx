@@ -16,6 +16,17 @@ export interface IProject {
   createdAt?: Date;
 }
 
+export interface IDetailedProject {
+  id: string;
+  title: string;
+  cost: string;
+  zip_code: string;
+  deadline: string;
+  done: boolean;
+  createdAt: Date;
+  location: string;
+}
+
 function App() {
   const [projects, setProjects] = useState<IProject[]>([]);
   const [loggedIn, setLoggedIn] = useState(false);
@@ -44,12 +55,12 @@ function App() {
   }
 
   async function addProject(project:IProject) {
-    await axiosApi.post('project', project);
+    const save = await axiosApi.post('project', project);
     loadSavedProjects();
   }
   
   async function removeProject(id: string) {
-    if (confirm('Deseja realmente deletar esse projeto?')) {
+    if (confirm('Do you want to delete this project?')) {
       await axiosApi.delete(`project/${id}`);
       loadSavedProjects();
     }
@@ -58,6 +69,11 @@ function App() {
   async function completeProject(id:string) {
     await axiosApi.patch(`project/${id}/done`);
     loadSavedProjects();
+  }
+
+  async function infoProject(id:string): Promise<IDetailedProject> {
+    const project = (await axiosApi.get(`project/${id}`)).data;
+    return project;
   }
 
   async function signIn(username: string, password: string) {
@@ -74,6 +90,7 @@ function App() {
 
   function signOut() {
     localStorage.removeItem(LOCAL_STORAGE_KEY);
+    localStorage.removeItem('name');
     setLoggedIn(false);
   }
 
@@ -91,6 +108,7 @@ function App() {
       projects={projects}
       handleDeleteProject={removeProject}
       handleCompleteProject={completeProject}
+      handleInfoProject={infoProject}
     />
     </>
   )
