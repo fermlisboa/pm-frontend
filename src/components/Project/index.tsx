@@ -1,5 +1,5 @@
 import styles from './project.module.css';
-import { TbTrash, TbInfoCircleFilled } from 'react-icons/tb';
+import { TbTrash, TbInfoCircleFilled, TbEditCircle } from 'react-icons/tb';
 import { BsFillCheckCircleFill } from 'react-icons/bs';
 import { IDetailedProject } from '../../App';
 
@@ -57,11 +57,11 @@ export function Project({project, handleDeleteProject, handleCompleteProject, ha
         </button>
       </div>
 
-      <div className={styles.projectDivButton}>
+      {/* <div className={styles.projectDivButton}>
         <button className={styles.deleteButton} onClick={() => handleDetailedProject(project.id ? project.id : '')}>
-          <TbInfoCircleFilled size={15} />
+          <TbEditCircle size={15} />
         </button>
-      </div>
+      </div> */}
 
       <div className={styles.projectDivButton}>
         <button className={styles.deleteButton} onClick={() => handleDeleteProject(project.id ? project.id : '')}>

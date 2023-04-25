@@ -1,6 +1,5 @@
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import { TbClipboardText } from 'react-icons/tb';
 import { IDetailedProject, IProject } from '../../App';
 import { Project } from '../Project';
@@ -81,7 +80,6 @@ export function Projects({projects, handleDeleteProject, handleCompleteProject, 
             <p>Deadline</p>
           </div>
           <p className={styles.emptyP} />
-          <p className={styles.emptyP} />
         </div>
       )}
       <div className={styles.list} >
@@ -106,21 +104,25 @@ export function Projects({projects, handleDeleteProject, handleCompleteProject, 
         aria-describedby="modal-modal-description"
       >
         <Box sx={modalStyle}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            {detailedProject.title}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Cost: {detailedProject.cost}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Zip Code: {detailedProject.zip_code}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Location: {detailedProject.location}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Deadline: {detailedProject.deadline.substring(0,10)}
-          </Typography>
+          <div className={styles.modalTitle}>
+            <p>
+              {detailedProject.title}
+            </p>
+          </div>
+          <div className={styles.modalInfo}>
+            <p>
+              Cost: R$ {detailedProject.cost}
+            </p>
+            <p>
+              Zip Code: {detailedProject.zip_code}
+            </p>
+            <p>
+              Location: {detailedProject.location}
+            </p>
+            <p>
+              Deadline: {detailedProject.deadline.substring(0,10)}
+            </p>
+          </div>
         </Box>
       </Modal>
 

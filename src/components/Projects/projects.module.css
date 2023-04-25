@@ -103,3 +103,30 @@
   line-height: 1.18rem;
   margin-right: auto;
 }
+
+.modalTitle {
+  color: var(--purple);
+  padding: 1rem;
+  border-bottom: 1px solid var(--blue);
+}
+
+.modalTitle p {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.modalInfo {
+  color: var(--gray-100);
+  padding: 1rem;
+}
+
+.modalInfo p {
+  font-size: 0.875rem;
+  margin-bottom: 0.375rem;
+  padding: 0.375rem 0rem;
+}
+
+.hr {
+  color: var(--blue);
+  background: var(--blue);
+}
